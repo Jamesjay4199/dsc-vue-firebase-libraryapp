@@ -3,6 +3,8 @@ import AppHome from "./components/AppHome";
 import LibraryList from "./components/library/LibraryList";
 import BookList from "./components/books/BookList";
 import AuthorList from "./components/author/AuthorList";
+import Signup from "./components/auth/Signup";
+import Login from "./components/auth/Login";
 
 const routes = [
   {
@@ -24,6 +26,16 @@ const routes = [
     path: '/authors',
     name: 'authors',
     component: AuthorList
+  },
+  {
+    path: '/auth/register',
+    name: 'register',
+    component: Signup
+  },
+  {
+    path: '/auth/login',
+    name: 'login',
+    component: Login
   },
 
   {

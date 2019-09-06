@@ -1,7 +1,7 @@
 <template>
   <main class="container">
     <app-header></app-header>
-    <section class="mt-3 red-border">
+    <section class="mt-3">
       <router-view></router-view>
     </section>
   </main>
@@ -19,7 +19,5 @@ export default {
 </script>
 
 <style>
-  .red-border {
-    border: solid red 1px;
-  }
+
 </style>

@@ -21,21 +21,53 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" v-if="!isLoggedIn">
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign up</a>
+          <router-link :to="{name: 'register'}" class="nav-link" href="#">Sign up</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign in</a>
+          <router-link :to="{name: 'login'}" class="nav-link" href="#">Sign in</router-link>
         </li>
       </ul>
+
+      <div class="dropdown" v-else>
+        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ userDetails.displayName}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" @click.prevent="logout" href="#">Logout</a>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
+  import { UserService } from "./auth/UserService";
   export default {
-    name: "AppHeader"
+    name: "AppHeader",
+    data: function() {
+      return {
+        isLoggedIn: false,
+        userDetails: {},
+      };
+    },
+    mounted() {
+      UserService.getUserDetails().then(response => {
+        this.isLoggedIn = !!response.uid;
+        this.userDetails = response;
+      });
+    },
+
+    methods: {
+      logout() {
+        UserService.logOut().then(() => {
+          location.href = '/';
+        })
+      }
+    }
+
+
   }
 </script>
 
