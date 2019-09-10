@@ -1,25 +1,33 @@
 <template>
-  <main>
-    <h1>Libraries</h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="">View all</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Add</a>
-        </li>
-      </ul>
-    </nav>
-  </main>
+  <section class="row">
+    <div class="col-md-4 my-3" :key="library.id" v-for="library in libraries">
+      <single-library :library="library"></single-library>
+    </div>
+  </section>
 </template>
 
 <script>
+  import { LibraryService } from "../services/LibraryService";
+  import SingleLibrary from "./SingleLibrary";
   export default {
-    name: "LibraryList"
+    name: "LibraryList",
+    data: () => ({
+      libraries: [],
+    }),
+    components: {
+      'single-library': SingleLibrary
+    },
+    firestore: {
+      libraries: LibraryService.getAllLibraries()
+    },
+    methods: {
+
+    }
   }
 </script>
 
 <style scoped>
-
+  .row > div {
+    min-height: 200px;
+  }
 </style>

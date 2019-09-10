@@ -1,4 +1,4 @@
-// Create your own configuration details here and save it as `.env.js`
+// Add your own configuration details here and save it as `.env.js`
 export const Config = {
   FIREBASE_API_KEY: '',
   FIREBASE_AUTH_DOMAIN: '',

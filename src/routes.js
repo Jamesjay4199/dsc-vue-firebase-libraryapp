@@ -1,10 +1,12 @@
 import VueRouter from "vue-router";
 import AppHome from "./components/AppHome";
 import LibraryList from "./components/library/LibraryList";
+import LibraryPage from "./components/library/LibraryPage";
 import BookList from "./components/books/BookList";
 import AuthorList from "./components/author/AuthorList";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
+import NewLibrary from "./components/library/NewLibrary";
 
 const routes = [
   {
@@ -14,28 +16,39 @@ const routes = [
   },
   {
     path: '/libraries',
-    name: 'libraries',
-    component: LibraryList
+    component: LibraryPage,
+    children: [
+      {
+        component: LibraryList,
+        name: 'libraries',
+        path: '/'
+      },
+      {
+        component: NewLibrary,
+        name: 'newLibrary',
+        path: 'add'
+      }
+    ]
   },
   {
-    path: '/books',
+    component: BookList,
     name: 'books',
-    component: BookList
+    path: '/books'
   },
   {
-    path: '/authors',
+    component: AuthorList,
     name: 'authors',
-    component: AuthorList
+    path: '/authors'
   },
   {
-    path: '/auth/register',
+    component: Signup,
     name: 'register',
-    component: Signup
+    path: '/auth/register'
   },
   {
-    path: '/auth/login',
+    component: Login,
     name: 'login',
-    component: Login
+    path: '/auth/login'
   },
 
   {

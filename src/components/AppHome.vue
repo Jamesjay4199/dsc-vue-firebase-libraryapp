@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import { UserService } from "./auth/UserService";
+  import { UserService } from "./services/UserService";
 
   export default {
     name: "AppHome",
